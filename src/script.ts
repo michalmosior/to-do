@@ -67,14 +67,17 @@ const deleteBox = (e) => {
 	console.log(e.target);
 	e.target.parentElement.parentElement.remove();
 	id = id - 1;
-	console.log('sss');
 	itemLeftUptade();
-	if (id === 0) {
-		infoBox.classList.remove('display-flex');
-	}
+	id === 0 ? infoBox.classList.remove('display-flex') : null;
 };
 
 addTaskButton.addEventListener('click', addTask);
+window.addEventListener('keyup', function (e) {
+	if (e.key === 'Enter') {
+		console.log('Sss');
+		addTask();
+	}
+});
 
 function loadTasks(): Task[] {
 	const taskJSON = localStorage.getItem('TASKS');
