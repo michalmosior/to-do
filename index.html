@@ -1,36 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Todo app</title>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="./images/favicon-32x32.png"
+		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="./style.css" />
+		<title>Frontend Mentor | Todo app</title>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
-<h1>To d</h1>
-  Todo
+		<!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+		<style>
+			.attribution {
+				font-size: 11px;
+				text-align: center;
+			}
 
-  <!-- Add dynamic number --> items left
+			.attribution a {
+				color: hsl(228, 45%, 44%);
+			}
+		</style>
+	</head>
 
-  All
-  Active 
-  Completed
+	<body>
+		<header class="header">
+			<h1 class="header__title">
+				To do
+				<button type="submit" class="header__button">
+					<img src="./img/icon-moon.svg" />
+				</button>
+			</h1>
+		</header>
+		<main class="main">
+			<div class="wrapper">
+				<form class="box input__box">
+					<input
+						type="text"
+						placeholder="Create new todo"
+						class="input box__right"
+					/>
+					<button type="button" class="submit__btn">+</button>
+				</form>
 
-  Clear Completed
-
-  Drag and drop to reorder list
-
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
-</body>
+				<ul class="task__container">
+					<!--<li class="box task__box">
+						<input type="checkbox" name="check" id="check" class="box__left" />
+						<p class="task__name">Write to do app</p>
+						<button class="delete__button">
+							<img src="./img/icon-cross.svg" />
+						</button>
+					</li>
+					<li class="box task__box">
+						<input type="checkbox" name="check" id="check" class="box__left" />
+						<p class="task__name">Learn TypeScript</p>
+						<button class="delete__button">
+							<img src="./img/icon-cross.svg" />
+						</button>
+					</li>
+					<li class="box task__box">
+						<input type="checkbox" name="check" id="check" class="box__left" />
+						<p class="task__name">Go home</p>
+						<button class="delete__button">
+							<img src="./img/icon-cross.svg" />
+						</button>
+					</li>-->
+					<div class="box info__box">
+						<p class="left__info"></p>
+						<button class="clear-completed__btn">Clear completed</button>
+					</div>
+				</ul>
+				<div class="box status__box">
+					<button class="all__btn status__btn status-active">All</button>
+					<button class="active__btn status__btn">Active</button>
+					<button class="completed__btn status__btn">Completed</button>
+				</div>
+			</div>
+		</main>
+		<div class="attribution">
+			Challenge by
+			<a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+				>Frontend Mentor</a
+			>. Coded by <a href="#">Your Name Here</a>.
+		</div>
+		<script src="./dist/script.js"></script>
+	</body>
 </html>
