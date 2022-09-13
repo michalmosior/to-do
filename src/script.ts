@@ -9,6 +9,8 @@ const form: HTMLFormElement = document.querySelector('.input__box');
 const input: HTMLInputElement = document.querySelector('.input');
 const addTaskButton: HTMLButtonElement = document.querySelector('.submit__btn');
 const infoBox: HTMLDivElement = document.querySelector('.info__box');
+const statusBtns: NodeListOf<HTMLButtonElement> =
+	document.querySelectorAll('.status__btn');
 const tasks: Task[] = loadTasks();
 let id: number = 0;
 
@@ -65,10 +67,20 @@ function deleteTask() {
 
 const deleteBox = (e) => {
 	console.log(e.target);
-	e.target.parentElement.parentElement.remove();
+	const targetBtn: HTMLButtonElement = e.target.parentElement;
+	targetBtn.parentElement.remove();
 	id = id - 1;
 	itemLeftUptade();
 	id === 0 ? infoBox.classList.remove('display-flex') : null;
+};
+
+const changeStatusDisplayed = (e) => {
+	statusBtns.forEach((statusBtn) => {
+		if (statusBtn.classList.contains('status-active')) {
+			statusBtn.classList.remove('status-active');
+		}
+	});
+	e.target.classList.add('status-active');
 };
 
 addTaskButton.addEventListener('click', addTask);
@@ -77,6 +89,10 @@ window.addEventListener('keyup', function (e) {
 		console.log('Sss');
 		addTask();
 	}
+});
+
+statusBtns.forEach((statusBtn) => {
+	statusBtn.addEventListener('click', changeStatusDisplayed);
 });
 
 function loadTasks(): Task[] {
