@@ -26,6 +26,7 @@ const createTaskElement = (task) => {
     const taskDeleteBtn = document.createElement('button');
     const taskDeleteBtnImg = document.createElement('img');
     taskBox.classList.add('box', 'task__box');
+    taskBox.setAttribute('id', id.toString());
     taskTitle.classList.add('task__name');
     taskCheckbox.classList.add('box__left');
     taskDeleteBtn.classList.add('delete__button');
@@ -37,6 +38,7 @@ const createTaskElement = (task) => {
     taskDeleteBtn.append(taskDeleteBtnImg);
     showInfoBox();
     deleteTask();
+    checkCompleted();
 };
 const showInfoBox = () => {
     infoBox.classList.add('display-flex');
@@ -45,6 +47,11 @@ const showInfoBox = () => {
 const itemLeftUptade = () => {
     const infoTxt = document.querySelector('.left__info');
     infoTxt.textContent = `${id} items left`;
+};
+const checkCompleted = () => {
+    const checkBoxes = document.querySelectorAll('.box__left');
+    console.log(checkBoxes);
+    console.log(tasks);
 };
 function deleteTask() {
     const deleteButtons = document.querySelectorAll('.delete__button');

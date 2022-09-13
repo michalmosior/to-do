@@ -35,6 +35,7 @@ const createTaskElement = (task: Task) => {
 	const taskDeleteBtn: HTMLButtonElement = document.createElement('button');
 	const taskDeleteBtnImg: HTMLImageElement = document.createElement('img');
 	taskBox.classList.add('box', 'task__box');
+	taskBox.setAttribute('id', id.toString());
 	taskTitle.classList.add('task__name');
 	taskCheckbox.classList.add('box__left');
 	taskDeleteBtn.classList.add('delete__button');
@@ -46,6 +47,7 @@ const createTaskElement = (task: Task) => {
 	taskDeleteBtn.append(taskDeleteBtnImg);
 	showInfoBox();
 	deleteTask();
+	checkCompleted();
 };
 
 const showInfoBox = () => {
@@ -58,8 +60,17 @@ const itemLeftUptade = () => {
 	infoTxt.textContent = `${id} items left`;
 };
 
+const checkCompleted = () => {
+	const checkBoxes: NodeListOf<HTMLInputElement> =
+		document.querySelectorAll('.box__left');
+
+	console.log(checkBoxes);
+	console.log(tasks);
+};
+
 function deleteTask() {
-	const deleteButtons = document.querySelectorAll('.delete__button');
+	const deleteButtons: NodeListOf<HTMLButtonElement> =
+		document.querySelectorAll('.delete__button');
 	deleteButtons.forEach((btn) => {
 		btn.addEventListener('click', deleteBox);
 	});
