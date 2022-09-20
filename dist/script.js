@@ -38,7 +38,7 @@ const createTaskElement = (task) => {
     taskDeleteBtn.append(taskDeleteBtnImg);
     showInfoBox();
     deleteTask();
-    checkCompleted();
+    checkCompleted(task, taskCheckbox, taskTitle);
 };
 const showInfoBox = () => {
     infoBox.classList.add('display-flex');
@@ -48,10 +48,11 @@ const itemLeftUptade = () => {
     const infoTxt = document.querySelector('.left__info');
     infoTxt.textContent = `${id} items left`;
 };
-const checkCompleted = () => {
-    const checkBoxes = document.querySelectorAll('.box__left');
-    console.log(checkBoxes);
-    console.log(tasks);
+const checkCompleted = (task, taskCheckbox, taskTitle) => {
+    taskCheckbox.addEventListener('change', () => {
+        task.completed = taskCheckbox.checked;
+        taskTitle.classList.toggle('completed');
+    });
 };
 function deleteTask() {
     const deleteButtons = document.querySelectorAll('.delete__button');
@@ -60,12 +61,11 @@ function deleteTask() {
     });
 }
 const deleteBox = (e) => {
-    console.log(e.target);
     const targetBtn = e.target.parentElement;
     targetBtn.parentElement.remove();
-    id = id - 1;
     itemLeftUptade();
     id === 0 ? infoBox.classList.remove('display-flex') : null;
+    console.log(tasks);
 };
 const changeStatusDisplayed = (e) => {
     statusBtns.forEach((statusBtn) => {
@@ -78,7 +78,6 @@ const changeStatusDisplayed = (e) => {
 addTaskButton.addEventListener('click', addTask);
 window.addEventListener('keyup', function (e) {
     if (e.key === 'Enter') {
-        console.log('Sss');
         addTask();
     }
 });

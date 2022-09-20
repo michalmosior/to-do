@@ -143,6 +143,7 @@ body {
 
 .task__name {
 	width: 70%;
+	transition: text-decoration 0.3s, color 0.3s;
 }
 
 .delete__button {
@@ -193,4 +194,8 @@ body {
 }
 .display-flex {
 	display: flex;
+}
+.completed {
+	text-decoration: line-through;
+	color: var(--LightGrayishBlue);
 }

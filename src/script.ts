@@ -46,8 +46,8 @@ const createTaskElement = (task: Task) => {
 	taskBox.append(taskCheckbox, taskTitle, taskDeleteBtn);
 	taskDeleteBtn.append(taskDeleteBtnImg);
 	showInfoBox();
-	deleteTask();
-	checkCompleted();
+	/*deleteTask();*/
+	checkCompleted(task, taskCheckbox, taskTitle);
 };
 
 const showInfoBox = () => {
@@ -60,29 +60,23 @@ const itemLeftUptade = () => {
 	infoTxt.textContent = `${id} items left`;
 };
 
-const checkCompleted = () => {
-	const checkBoxes: NodeListOf<HTMLInputElement> =
-		document.querySelectorAll('.box__left');
-
-	console.log(checkBoxes);
-	console.log(tasks);
+const checkCompleted = (
+	task: Task,
+	taskCheckbox: HTMLInputElement,
+	taskTitle: HTMLParagraphElement
+) => {
+	taskCheckbox.addEventListener('change', () => {
+		task.completed = taskCheckbox.checked;
+		taskTitle.classList.toggle('completed');
+	});
 };
 
-function deleteTask() {
-	const deleteButtons: NodeListOf<HTMLButtonElement> =
-		document.querySelectorAll('.delete__button');
-	deleteButtons.forEach((btn) => {
-		btn.addEventListener('click', deleteBox);
-	});
-}
-
 const deleteBox = (e) => {
-	console.log(e.target);
 	const targetBtn: HTMLButtonElement = e.target.parentElement;
 	targetBtn.parentElement.remove();
-	id = id - 1;
 	itemLeftUptade();
 	id === 0 ? infoBox.classList.remove('display-flex') : null;
+	console.log(tasks);
 };
 
 const changeStatusDisplayed = (e) => {
@@ -97,7 +91,6 @@ const changeStatusDisplayed = (e) => {
 addTaskButton.addEventListener('click', addTask);
 window.addEventListener('keyup', function (e) {
 	if (e.key === 'Enter') {
-		console.log('Sss');
 		addTask();
 	}
 });
