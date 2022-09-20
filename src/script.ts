@@ -46,8 +46,8 @@ const createTaskElement = (task: Task) => {
 	taskBox.append(taskCheckbox, taskTitle, taskDeleteBtn);
 	taskDeleteBtn.append(taskDeleteBtnImg);
 	showInfoBox();
-	/*deleteTask();*/
 	checkCompleted(task, taskCheckbox, taskTitle);
+	deleteTask(task, taskBox, taskDeleteBtn);
 };
 
 const showInfoBox = () => {
@@ -71,12 +71,16 @@ const checkCompleted = (
 	});
 };
 
-const deleteBox = (e) => {
-	const targetBtn: HTMLButtonElement = e.target.parentElement;
-	targetBtn.parentElement.remove();
-	itemLeftUptade();
-	id === 0 ? infoBox.classList.remove('display-flex') : null;
-	console.log(tasks);
+const deleteTask = (
+	task: Task,
+	taskBox: HTMLLIElement,
+	taskDeleteBtn: HTMLButtonElement
+) => {
+	taskDeleteBtn.addEventListener('click', () => {
+		console.log(task);
+		taskBox.remove();
+		itemLeftUptade();
+	});
 };
 
 const changeStatusDisplayed = (e) => {
