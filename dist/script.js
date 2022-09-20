@@ -4,7 +4,7 @@ const input = document.querySelector('.input');
 const addTaskButton = document.querySelector('.submit__btn');
 const infoBox = document.querySelector('.info__box');
 const statusBtns = document.querySelectorAll('.status__btn');
-const tasks = loadTasks();
+let tasks = loadTasks();
 let id = 0;
 const addTask = () => {
     if (input.value != '') {
@@ -38,7 +38,7 @@ const createTaskElement = (task) => {
     taskDeleteBtn.append(taskDeleteBtnImg);
     showInfoBox();
     checkCompleted(task, taskCheckbox, taskTitle);
-    deleteTask(task, taskBox, taskDeleteBtn);
+    deleteTask(task, taskBox, taskTitle, taskDeleteBtn);
 };
 const showInfoBox = () => {
     infoBox.classList.add('display-flex');
@@ -54,11 +54,14 @@ const checkCompleted = (task, taskCheckbox, taskTitle) => {
         taskTitle.classList.toggle('completed');
     });
 };
-const deleteTask = (task, taskBox, taskDeleteBtn) => {
+const deleteTask = (task, taskBox, taskTitle, taskDeleteBtn) => {
     taskDeleteBtn.addEventListener('click', () => {
-        console.log(task);
+        const taskName = taskTitle.textContent;
         taskBox.remove();
         itemLeftUptade();
+        console.log(task.title);
+        console.log(task);
+        tasks = tasks.filter((task) => task.title != taskName);
     });
 };
 const changeStatusDisplayed = (e) => {

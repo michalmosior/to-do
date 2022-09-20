@@ -11,7 +11,7 @@ const addTaskButton: HTMLButtonElement = document.querySelector('.submit__btn');
 const infoBox: HTMLDivElement = document.querySelector('.info__box');
 const statusBtns: NodeListOf<HTMLButtonElement> =
 	document.querySelectorAll('.status__btn');
-const tasks: Task[] = loadTasks();
+let tasks: Task[] = loadTasks();
 let id: number = 0;
 
 const addTask = () => {
@@ -47,7 +47,7 @@ const createTaskElement = (task: Task) => {
 	taskDeleteBtn.append(taskDeleteBtnImg);
 	showInfoBox();
 	checkCompleted(task, taskCheckbox, taskTitle);
-	deleteTask(task, taskBox, taskDeleteBtn);
+	deleteTask(task, taskBox, taskTitle, taskDeleteBtn);
 };
 
 const showInfoBox = () => {
@@ -74,12 +74,16 @@ const checkCompleted = (
 const deleteTask = (
 	task: Task,
 	taskBox: HTMLLIElement,
+	taskTitle: HTMLParagraphElement,
 	taskDeleteBtn: HTMLButtonElement
 ) => {
 	taskDeleteBtn.addEventListener('click', () => {
-		console.log(task);
+		const taskName = taskTitle.textContent;
 		taskBox.remove();
 		itemLeftUptade();
+		console.log(task.title);
+		console.log(task);
+		tasks = tasks.filter((task) => task.title != taskName);
 	});
 };
 
