@@ -59,7 +59,7 @@ const showInfoBox = () => {
 
 const itemLeftUptade = () => {
 	const infoTxt: HTMLParagraphElement = document.querySelector('.left__info');
-	infoTxt.textContent = `${id} items left`;
+	infoTxt.textContent = `${tasks.length.toString()} items left`;
 };
 
 const checkCompleted = (
@@ -108,8 +108,8 @@ function deleteTask(
 	taskDeleteBtn.addEventListener('click', () => {
 		const taskName = taskTitle.textContent;
 		taskBox.remove();
-		itemLeftUptade();
 		tasks = tasks.filter((task) => task.title != taskName);
+		itemLeftUptade();
 	});
 }
 

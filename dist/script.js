@@ -47,7 +47,7 @@ const showInfoBox = () => {
 };
 const itemLeftUptade = () => {
     const infoTxt = document.querySelector('.left__info');
-    infoTxt.textContent = `${id} items left`;
+    infoTxt.textContent = `${tasks.length.toString()} items left`;
 };
 const checkCompleted = (task, taskCheckbox, taskTitle) => {
     taskCheckbox.addEventListener('change', () => {
@@ -85,8 +85,8 @@ function deleteTask(task, taskBox, taskTitle, taskDeleteBtn) {
     taskDeleteBtn.addEventListener('click', () => {
         const taskName = taskTitle.textContent;
         taskBox.remove();
-        itemLeftUptade();
         tasks = tasks.filter((task) => task.title != taskName);
+        itemLeftUptade();
     });
 }
 const changeStatusDisplayed = (e) => {
