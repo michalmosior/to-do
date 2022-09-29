@@ -199,3 +199,6 @@ body {
 	text-decoration: line-through;
 	color: var(--LightGrayishBlue);
 }
+.display-none {
+	display: none;
+}

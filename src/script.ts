@@ -11,6 +11,7 @@ const addTaskButton: HTMLButtonElement = document.querySelector('.submit__btn');
 const infoBox: HTMLDivElement = document.querySelector('.info__box');
 const statusBtns: NodeListOf<HTMLButtonElement> =
 	document.querySelectorAll('.status__btn');
+
 let tasks: Task[] = loadTasks();
 let id: number = 0;
 
@@ -48,6 +49,7 @@ const createTaskElement = (task: Task) => {
 	showInfoBox();
 	checkCompleted(task, taskCheckbox, taskTitle);
 	deleteTask(task, taskBox, taskTitle, taskDeleteBtn);
+	handleStatusButtons(task, taskBox);
 };
 
 const showInfoBox = () => {
@@ -71,21 +73,45 @@ const checkCompleted = (
 	});
 };
 
-const deleteTask = (
+const handleStatusButtons = (task: Task, taskBox: HTMLLIElement) => {
+	const allBtn: HTMLButtonElement = document.querySelector('.all__btn');
+	const activeBtn: HTMLButtonElement = document.querySelector('.active__btn');
+	const completedBtn: HTMLButtonElement =
+		document.querySelector('.completed__btn');
+	allBtn.addEventListener('click', () => {
+		if (taskBox.classList.contains('display-none')) {
+			taskBox.classList.remove('display-none');
+		}
+	});
+	activeBtn.addEventListener('click', () => {
+		if (task.completed === true) {
+			taskBox.classList.add('display-none');
+		} else {
+			taskBox.classList.remove('display-none');
+		}
+	});
+	completedBtn.addEventListener('click', () => {
+		if (task.completed === false) {
+			taskBox.classList.add('display-none');
+		} else {
+			taskBox.classList.remove('display-none');
+		}
+	});
+};
+
+function deleteTask(
 	task: Task,
 	taskBox: HTMLLIElement,
 	taskTitle: HTMLParagraphElement,
 	taskDeleteBtn: HTMLButtonElement
-) => {
+) {
 	taskDeleteBtn.addEventListener('click', () => {
 		const taskName = taskTitle.textContent;
 		taskBox.remove();
 		itemLeftUptade();
-		console.log(task.title);
-		console.log(task);
 		tasks = tasks.filter((task) => task.title != taskName);
 	});
-};
+}
 
 const changeStatusDisplayed = (e) => {
 	statusBtns.forEach((statusBtn) => {

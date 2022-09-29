@@ -39,6 +39,7 @@ const createTaskElement = (task) => {
     showInfoBox();
     checkCompleted(task, taskCheckbox, taskTitle);
     deleteTask(task, taskBox, taskTitle, taskDeleteBtn);
+    handleStatusButtons(task, taskBox);
 };
 const showInfoBox = () => {
     infoBox.classList.add('display-flex');
@@ -54,16 +55,40 @@ const checkCompleted = (task, taskCheckbox, taskTitle) => {
         taskTitle.classList.toggle('completed');
     });
 };
-const deleteTask = (task, taskBox, taskTitle, taskDeleteBtn) => {
+const handleStatusButtons = (task, taskBox) => {
+    const allBtn = document.querySelector('.all__btn');
+    const activeBtn = document.querySelector('.active__btn');
+    const completedBtn = document.querySelector('.completed__btn');
+    allBtn.addEventListener('click', () => {
+        if (taskBox.classList.contains('display-none')) {
+            taskBox.classList.remove('display-none');
+        }
+    });
+    activeBtn.addEventListener('click', () => {
+        if (task.completed === true) {
+            taskBox.classList.add('display-none');
+        }
+        else {
+            taskBox.classList.remove('display-none');
+        }
+    });
+    completedBtn.addEventListener('click', () => {
+        if (task.completed === false) {
+            taskBox.classList.add('display-none');
+        }
+        else {
+            taskBox.classList.remove('display-none');
+        }
+    });
+};
+function deleteTask(task, taskBox, taskTitle, taskDeleteBtn) {
     taskDeleteBtn.addEventListener('click', () => {
         const taskName = taskTitle.textContent;
         taskBox.remove();
         itemLeftUptade();
-        console.log(task.title);
-        console.log(task);
         tasks = tasks.filter((task) => task.title != taskName);
     });
-};
+}
 const changeStatusDisplayed = (e) => {
     statusBtns.forEach((statusBtn) => {
         if (statusBtn.classList.contains('status-active')) {
