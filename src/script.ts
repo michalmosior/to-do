@@ -11,6 +11,9 @@ const addTaskButton: HTMLButtonElement = document.querySelector('.submit__btn');
 const infoBox: HTMLDivElement = document.querySelector('.info__box');
 const statusBtns: NodeListOf<HTMLButtonElement> =
 	document.querySelectorAll('.status__btn');
+const clearCompletedBtn: HTMLButtonElement = document.querySelector(
+	'.clear-completed__btn'
+);
 
 let tasks: Task[] = loadTasks();
 let id: number = 0;
@@ -50,7 +53,6 @@ const createTaskElement = (task: Task) => {
 	checkCompleted(task, taskCheckbox, taskTitle);
 	deleteTask(task, taskBox, taskTitle, taskDeleteBtn);
 	handleStatusButtons(task, taskBox);
-	clearCompleted(task, taskBox);
 };
 
 const showInfoBox = () => {
@@ -119,16 +121,15 @@ const changeStatusDisplayed = (e) => {
 	e.target.classList.add('status-active');
 };
 
-const clearCompleted = (task: Task, taskBox: HTMLLIElement) => {
-	const clearCompletedBtn: HTMLButtonElement = document.querySelector(
-		'.clear-completed__btn'
-	);
-	clearCompletedBtn.addEventListener('click', () => {
-		tasks.forEach((el) => {
-			console.log(el);
-		});
+const clearCompleted = () => {
+	tasks.forEach((el) => {
+		if (el.completed === true) {
+			deleteTask();
+		}
 	});
 };
+
+clearCompletedBtn.addEventListener('click', clearCompleted);
 
 addTaskButton.addEventListener('click', addTask);
 window.addEventListener('keyup', function (e) {

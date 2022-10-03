@@ -4,6 +4,7 @@ const input = document.querySelector('.input');
 const addTaskButton = document.querySelector('.submit__btn');
 const infoBox = document.querySelector('.info__box');
 const statusBtns = document.querySelectorAll('.status__btn');
+const clearCompletedBtn = document.querySelector('.clear-completed__btn');
 let tasks = loadTasks();
 let id = 0;
 const addTask = () => {
@@ -40,7 +41,6 @@ const createTaskElement = (task) => {
     checkCompleted(task, taskCheckbox, taskTitle);
     deleteTask(task, taskBox, taskTitle, taskDeleteBtn);
     handleStatusButtons(task, taskBox);
-    clearCompleted(task, taskBox);
 };
 const showInfoBox = () => {
     infoBox.classList.add('display-flex');
@@ -92,14 +92,14 @@ const changeStatusDisplayed = (e) => {
     });
     e.target.classList.add('status-active');
 };
-const clearCompleted = (task, taskBox) => {
-    const clearCompletedBtn = document.querySelector('.clear-completed__btn');
-    clearCompletedBtn.addEventListener('click', () => {
-        tasks.forEach((el) => {
-            console.log(el);
-        });
+const clearCompleted = () => {
+    tasks.forEach((el) => {
+        if (el.completed === true) {
+            deleteTask();
+        }
     });
 };
+clearCompletedBtn.addEventListener('click', clearCompleted);
 addTaskButton.addEventListener('click', addTask);
 window.addEventListener('keyup', function (e) {
     e.key === 'Enter' ? addTask() : null;
