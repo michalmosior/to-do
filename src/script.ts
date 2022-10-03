@@ -50,6 +50,7 @@ const createTaskElement = (task: Task) => {
 	checkCompleted(task, taskCheckbox, taskTitle);
 	deleteTask(task, taskBox, taskTitle, taskDeleteBtn);
 	handleStatusButtons(task, taskBox);
+	clearCompleted(task, taskBox);
 };
 
 const showInfoBox = () => {
@@ -79,23 +80,19 @@ const handleStatusButtons = (task: Task, taskBox: HTMLLIElement) => {
 	const completedBtn: HTMLButtonElement =
 		document.querySelector('.completed__btn');
 	allBtn.addEventListener('click', () => {
-		if (taskBox.classList.contains('display-none')) {
-			taskBox.classList.remove('display-none');
-		}
+		taskBox.classList.contains('display-none')
+			? taskBox.classList.remove('display-none')
+			: null;
 	});
 	activeBtn.addEventListener('click', () => {
-		if (task.completed === true) {
-			taskBox.classList.add('display-none');
-		} else {
-			taskBox.classList.remove('display-none');
-		}
+		task.completed === true
+			? taskBox.classList.add('display-none')
+			: taskBox.classList.remove('display-none');
 	});
 	completedBtn.addEventListener('click', () => {
-		if (task.completed === false) {
-			taskBox.classList.add('display-none');
-		} else {
-			taskBox.classList.remove('display-none');
-		}
+		task.completed === false
+			? taskBox.classList.add('display-none')
+			: taskBox.classList.remove('display-none');
 	});
 };
 
@@ -115,18 +112,27 @@ function deleteTask(
 
 const changeStatusDisplayed = (e) => {
 	statusBtns.forEach((statusBtn) => {
-		if (statusBtn.classList.contains('status-active')) {
-			statusBtn.classList.remove('status-active');
-		}
+		statusBtn.classList.contains('status-active')
+			? statusBtn.classList.remove('status-active')
+			: null;
 	});
 	e.target.classList.add('status-active');
 };
 
+const clearCompleted = (task: Task, taskBox: HTMLLIElement) => {
+	const clearCompletedBtn: HTMLButtonElement = document.querySelector(
+		'.clear-completed__btn'
+	);
+	clearCompletedBtn.addEventListener('click', () => {
+		tasks.forEach((el) => {
+			console.log(el);
+		});
+	});
+};
+
 addTaskButton.addEventListener('click', addTask);
 window.addEventListener('keyup', function (e) {
-	if (e.key === 'Enter') {
-		addTask();
-	}
+	e.key === 'Enter' ? addTask() : null;
 });
 
 statusBtns.forEach((statusBtn) => {
