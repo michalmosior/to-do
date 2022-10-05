@@ -53,6 +53,7 @@ const createTaskElement = (task: Task) => {
 	checkCompleted(task, taskCheckbox, taskTitle);
 	deleteTask(task, taskBox, taskTitle, taskDeleteBtn);
 	handleStatusButtons(task, taskBox);
+	clearCompleted(taskTitle);
 };
 
 const showInfoBox = () => {
@@ -121,15 +122,15 @@ const changeStatusDisplayed = (e) => {
 	e.target.classList.add('status-active');
 };
 
-const clearCompleted = () => {
-	tasks.forEach((el) => {
-		if (el.completed === true) {
-			deleteTask();
-		}
+const clearCompleted = (taskTitle: HTMLParagraphElement) => {
+	clearCompletedBtn.addEventListener('click', () => {
+		tasks.forEach((el) => {
+			if (el.completed === true) {
+				console.log(taskTitle);
+			}
+		});
 	});
 };
-
-clearCompletedBtn.addEventListener('click', clearCompleted);
 
 addTaskButton.addEventListener('click', addTask);
 window.addEventListener('keyup', function (e) {
