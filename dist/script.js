@@ -5,6 +5,7 @@ const addTaskButton = document.querySelector('.submit__btn');
 const infoBox = document.querySelector('.info__box');
 const statusBtns = document.querySelectorAll('.status__btn');
 const clearCompletedBtn = document.querySelector('.clear-completed__btn');
+const themeButton = document.querySelector('.header__button');
 let tasks = loadTasks();
 let id = 0;
 const addTask = () => {
@@ -49,6 +50,12 @@ const showInfoBox = () => {
 };
 const itemLeftUptade = () => {
     const infoTxt = document.querySelector('.left__info');
+    if (tasks.length.toString() === '0') {
+        infoBox.classList.remove('display-flex');
+    }
+    else {
+        console.log(infoTxt.textContent);
+    }
     infoTxt.textContent = `${tasks.length.toString()} items left`;
 };
 const checkCompleted = (task, taskCheckbox, taskTitle) => {
@@ -103,6 +110,13 @@ const clearCompleted = (taskTitle) => {
         }
     });
 };
+const changeTheme = () => {
+    const moonIco = document.querySelector('.moon-ico');
+    const sunIco = document.querySelector('.sun-ico');
+    moonIco.classList.toggle('display-block');
+    moonIco.classList.toggle('display-none');
+    sunIco.classList.toggle('display-none');
+};
 addTaskButton.addEventListener('click', addTask);
 window.addEventListener('keyup', function (e) {
     e.key === 'Enter' ? addTask() : null;
@@ -110,8 +124,9 @@ window.addEventListener('keyup', function (e) {
 statusBtns.forEach((statusBtn) => {
     statusBtn.addEventListener('click', changeStatusDisplayed);
 });
+themeButton.addEventListener('click', changeTheme);
 function loadTasks() {
-    const taskJSON = localStorage.getItem('TASKS');
+    const taskJSON = localStorage.getItem('tasks');
     if (taskJSON == null)
         return [];
     return JSON.parse(taskJSON);
