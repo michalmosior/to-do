@@ -95,11 +95,12 @@ const changeStatusDisplayed = (e) => {
 };
 const clearCompleted = (taskTitle) => {
     clearCompletedBtn.addEventListener('click', () => {
-        tasks.forEach((el) => {
-            if (el.completed === true) {
-                console.log(taskTitle);
-            }
-        });
+        if (taskTitle.classList.contains('completed')) {
+            const taskName = taskTitle.textContent;
+            tasks = tasks.filter((task) => task.title != taskName);
+            taskTitle.parentElement.remove();
+            itemLeftUptade();
+        }
     });
 };
 addTaskButton.addEventListener('click', addTask);
