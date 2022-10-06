@@ -111,11 +111,25 @@ const clearCompleted = (taskTitle) => {
     });
 };
 const changeTheme = () => {
+    const root = document.querySelector(':root');
     const moonIco = document.querySelector('.moon-ico');
     const sunIco = document.querySelector('.sun-ico');
+    const header = document.querySelector('.header');
+    const nightThemeBackground = `url('./img/bg-mobile-dark.jpg')`;
+    const dayThemeBackground = `url('./img/bg-mobile-light.jpg')`;
     moonIco.classList.toggle('display-block');
     moonIco.classList.toggle('display-none');
     sunIco.classList.toggle('display-none');
+    if (sunIco.classList.contains('display-none')) {
+        header.style.backgroundImage = dayThemeBackground;
+        root.style.setProperty('--backgroundColor', 'hsl(236, 33%, 92%)');
+        root.style.setProperty('--taskBoxBackgroundColor', 'hsl(0, 0%, 98%)');
+    }
+    else if (moonIco.classList.contains('display-none')) {
+        header.style.backgroundImage = nightThemeBackground;
+        root.style.setProperty('--backgroundColor', 'hsl(235, 21%, 11%)');
+        root.style.setProperty('--taskBoxBackgroundColor', 'hsl(235, 24%, 19%)');
+    }
 };
 addTaskButton.addEventListener('click', addTask);
 window.addEventListener('keyup', function (e) {

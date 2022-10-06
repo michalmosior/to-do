@@ -7,8 +7,8 @@
 :root {
 	--brightBlue: hsl(220, 98%, 61%);
 	--checkBackground: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
-	--VeryLightGray: hsl(0, 0%, 98%);
-	--VeryLightGrayishBlue: hsl(236, 33%, 92%);
+	--taskBoxBackgroundColor: hsl(0, 0%, 98%);
+	--backgroundColor: hsl(236, 33%, 92%);
 	--LightGrayishBlue: hsl(233, 11%, 84%);
 	--DarkGrayishBlue: hsl(236, 9%, 61%);
 	--VeryDarkGrayishBlue: hsl(235, 19%, 35%);
@@ -26,7 +26,7 @@
 body {
 	font-family: 'Josefin Sans', sans-serif;
 	font-size: 18px;
-	background-color: var(--VeryLightGrayishBlue);
+	background-color: var(--backgroundColor);
 }
 
 .header {
@@ -44,7 +44,7 @@ body {
 .header__title {
 	display: flex;
 	justify-content: space-between;
-	color: var(--VeryLightGray);
+	color: hsl(0, 0%, 98%);
 	text-transform: uppercase;
 	max-width: 700px;
 	margin: 0 auto;
@@ -75,7 +75,7 @@ body {
 	width: 100%;
 	height: 3rem;
 	padding: 0 1rem;
-	background-color: var(--VeryLightGray);
+	background-color: var(--taskBoxBackgroundColor);
 }
 
 .input__box {
@@ -129,7 +129,7 @@ body {
 }
 
 .task__box {
-	border-bottom: solid 2px var(--VeryLightGrayishBlue);
+	border-bottom: solid 2px var(--backgroundColor);
 }
 
 .task__box:last-child,
