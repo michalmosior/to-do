@@ -10,8 +10,8 @@
 	--taskBoxBackgroundColor: hsl(0, 0%, 98%);
 	--backgroundColor: hsl(236, 33%, 92%);
 	--LightGrayishBlue: hsl(233, 11%, 84%);
-	--DarkGrayishBlue: hsl(236, 9%, 61%);
-	--VeryDarkGrayishBlue: hsl(235, 19%, 35%);
+	--lightFontColor: hsl(236, 9%, 61%);
+	--fontColor: hsl(235, 19%, 35%);
 
 	/*Dark theme*/
 	--VeryDarkBlue: hsl(235, 21%, 11%);
@@ -67,7 +67,9 @@ body {
 	max-width: 700px;
 	margin: 0 auto;
 }
-
+.input {
+	color: var(--lightFontColor);
+}
 .box {
 	display: flex;
 	justify-content: space-between;
@@ -85,7 +87,7 @@ body {
 .input::placeholder {
 	font-size: 1rem;
 	font-family: 'Josefin Sans', sans-serif;
-	color: var(--DarkGrayishBlue);
+	color: var(--lightFontColor);
 }
 .submit__btn {
 	border: none;
@@ -144,6 +146,7 @@ body {
 .task__name {
 	width: 70%;
 	transition: text-decoration 0.3s, color 0.3s;
+	color: var(--lightFontColor);
 }
 
 .delete__button {

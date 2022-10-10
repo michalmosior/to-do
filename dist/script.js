@@ -8,6 +8,7 @@ const clearCompletedBtn = document.querySelector('.clear-completed__btn');
 const themeButton = document.querySelector('.header__button');
 let tasks = loadTasks();
 let id = 0;
+let size;
 const addTask = () => {
     if (input.value != '') {
         const newTask = {
@@ -111,12 +112,12 @@ const clearCompleted = (taskTitle) => {
     });
 };
 const changeTheme = () => {
-    const root = document.querySelector(':root');
+    const root = document.documentElement;
     const moonIco = document.querySelector('.moon-ico');
     const sunIco = document.querySelector('.sun-ico');
     const header = document.querySelector('.header');
-    const nightThemeBackground = `url('./img/bg-mobile-dark.jpg')`;
-    const dayThemeBackground = `url('./img/bg-mobile-light.jpg')`;
+    const nightThemeBackground = `url('./img/bg-${size}-dark.jpg')`;
+    const dayThemeBackground = `url('./img/bg-${size}-light.jpg')`;
     moonIco.classList.toggle('display-block');
     moonIco.classList.toggle('display-none');
     sunIco.classList.toggle('display-none');
@@ -131,6 +132,7 @@ const changeTheme = () => {
         root.style.setProperty('--taskBoxBackgroundColor', 'hsl(235, 24%, 19%)');
     }
 };
+const changeHeaderBackground = () => { };
 addTaskButton.addEventListener('click', addTask);
 window.addEventListener('keyup', function (e) {
     e.key === 'Enter' ? addTask() : null;
