@@ -16,6 +16,7 @@ const clearCompletedBtn: HTMLButtonElement = document.querySelector(
 );
 const themeButton: HTMLButtonElement =
 	document.querySelector('.header__button');
+
 let tasks: Task[] = loadTasks();
 let id: number = 0;
 let size: string;
@@ -43,17 +44,17 @@ const createTaskElement = (task: Task) => {
 	taskBox.classList.add('box', 'task__box');
 	taskBox.setAttribute('id', id.toString());
 	taskTitle.classList.add('task__name');
+	taskTitle.textContent = task.title;
 	taskCheckbox.classList.add('box__left');
+	taskCheckbox.type = 'checkbox';
 	taskDeleteBtn.classList.add('delete__button');
 	taskDeleteBtnImg.setAttribute('src', './img/icon-cross.svg');
-	taskTitle.textContent = task.title;
-	taskCheckbox.type = 'checkbox';
 	list.prepend(taskBox);
 	taskBox.append(taskCheckbox, taskTitle, taskDeleteBtn);
 	taskDeleteBtn.append(taskDeleteBtnImg);
 	showInfoBox();
 	checkCompleted(task, taskCheckbox, taskTitle);
-	deleteTask(task, taskBox, taskTitle, taskDeleteBtn);
+	deleteTask(taskBox, taskTitle, taskDeleteBtn);
 	handleStatusButtons(task, taskBox);
 	clearCompleted(taskTitle);
 };
@@ -67,8 +68,6 @@ const itemLeftUptade = () => {
 	const infoTxt: HTMLParagraphElement = document.querySelector('.left__info');
 	if (tasks.length.toString() === '0') {
 		infoBox.classList.remove('display-flex');
-	} else {
-		console.log(infoTxt.textContent);
 	}
 	infoTxt.textContent = `${tasks.length.toString()} items left`;
 };
@@ -107,7 +106,6 @@ const handleStatusButtons = (task: Task, taskBox: HTMLLIElement) => {
 };
 
 function deleteTask(
-	task: Task,
 	taskBox: HTMLLIElement,
 	taskTitle: HTMLParagraphElement,
 	taskDeleteBtn: HTMLButtonElement
@@ -145,13 +143,26 @@ const changeTheme = () => {
 	const moonIco: SVGElement = document.querySelector('.moon-ico');
 	const sunIco: SVGElement = document.querySelector('.sun-ico');
 	const header: HTMLHeadingElement = document.querySelector('.header');
-
-	const nightThemeBackground: string = `url('./img/bg-${size}-dark.jpg')`;
-	const dayThemeBackground: string = `url('./img/bg-${size}-light.jpg')`;
+	let size: string;
 
 	moonIco.classList.toggle('display-block');
 	moonIco.classList.toggle('display-none');
 	sunIco.classList.toggle('display-none');
+	const changeHeaderBackground = (ico: SVGElement) => {
+		const width: number = window.innerWidth;
+		if (width > 768) {
+			size = 'desktop';
+			console.log(size);
+			console.log(ico);
+		} else {
+			size = 'mobile';
+			console.log(size);
+			console.log(ico);
+		}
+	};
+	changeHeaderBackground(sunIco);
+	const nightThemeBackground: string = `url('./img/bg-${size}-dark.jpg')`;
+	const dayThemeBackground: string = `url('./img/bg-${size}-light.jpg')`;
 	if (sunIco.classList.contains('display-none')) {
 		header.style.backgroundImage = dayThemeBackground;
 		root.style.setProperty('--backgroundColor', 'hsl(236, 33%, 92%)');
@@ -162,8 +173,6 @@ const changeTheme = () => {
 		root.style.setProperty('--taskBoxBackgroundColor', 'hsl(235, 24%, 19%)');
 	}
 };
-
-const changeHeaderBackground = () => {};
 
 addTaskButton.addEventListener('click', addTask);
 window.addEventListener('keyup', function (e) {
