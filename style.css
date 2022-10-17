@@ -30,15 +30,23 @@ body {
 }
 
 .header {
-	background-image: url('./img/bg-mobile-light.jpg');
 	background-size: cover;
 	background-position: center;
 	height: 40vh;
 	padding: 5rem 1rem;
 }
+.light-header {
+	background-image: url('./img/bg-mobile-light.jpg');
+}
+.dark-header {
+	background-image: url('./img/bg-mobile-dark.jpg');
+}
 @media (min-width: 768px) {
-	.header {
+	.light-header {
 		background-image: url('./img/bg-desktop-light.jpg');
+	}
+	.dark-header {
+		background-image: url('./img/bg-desktop-dark.jpg');
 	}
 }
 .header__title {
@@ -132,6 +140,9 @@ body {
 
 .task__box {
 	border-bottom: solid 2px var(--backgroundColor);
+	opacity: 0;
+	transform: translateY(-25%);
+	animation: showTaskBox 0.3s 1 forwards;
 }
 
 .task__box:last-child,
@@ -208,4 +219,15 @@ body {
 }
 .display-block {
 	display: block;
+}
+
+@keyframes showTaskBox {
+	from {
+		opacity: 0;
+		transform: translateY(-25%);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }

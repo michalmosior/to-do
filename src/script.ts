@@ -137,40 +137,23 @@ const clearCompleted = (taskTitle: HTMLParagraphElement) => {
 		}
 	});
 };
-
 const changeTheme = () => {
 	const root = document.documentElement;
 	const moonIco: SVGElement = document.querySelector('.moon-ico');
 	const sunIco: SVGElement = document.querySelector('.sun-ico');
 	const header: HTMLHeadingElement = document.querySelector('.header');
-	let size: string;
-
 	moonIco.classList.toggle('display-block');
 	moonIco.classList.toggle('display-none');
 	sunIco.classList.toggle('display-none');
-	const changeHeaderBackground = (ico: SVGElement) => {
-		const width: number = window.innerWidth;
-		if (width > 768) {
-			size = 'desktop';
-			console.log(size);
-			console.log(ico);
-		} else {
-			size = 'mobile';
-			console.log(size);
-			console.log(ico);
-		}
-	};
-	changeHeaderBackground(sunIco);
-	const nightThemeBackground: string = `url('./img/bg-${size}-dark.jpg')`;
-	const dayThemeBackground: string = `url('./img/bg-${size}-light.jpg')`;
+
 	if (sunIco.classList.contains('display-none')) {
-		header.style.backgroundImage = dayThemeBackground;
 		root.style.setProperty('--backgroundColor', 'hsl(236, 33%, 92%)');
 		root.style.setProperty('--taskBoxBackgroundColor', 'hsl(0, 0%, 98%)');
+		header.classList.replace('dark-header', 'light-header');
 	} else if (moonIco.classList.contains('display-none')) {
-		header.style.backgroundImage = nightThemeBackground;
 		root.style.setProperty('--backgroundColor', 'hsl(235, 21%, 11%)');
 		root.style.setProperty('--taskBoxBackgroundColor', 'hsl(235, 24%, 19%)');
+		header.classList.replace('light-header', 'dark-header');
 	}
 };
 
@@ -178,7 +161,6 @@ addTaskButton.addEventListener('click', addTask);
 window.addEventListener('keyup', function (e) {
 	e.key === 'Enter' ? addTask() : null;
 });
-
 statusBtns.forEach((statusBtn) => {
 	statusBtn.addEventListener('click', changeStatusDisplayed);
 });

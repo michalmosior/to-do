@@ -113,35 +113,18 @@ const changeTheme = () => {
     const moonIco = document.querySelector('.moon-ico');
     const sunIco = document.querySelector('.sun-ico');
     const header = document.querySelector('.header');
-    let size;
     moonIco.classList.toggle('display-block');
     moonIco.classList.toggle('display-none');
     sunIco.classList.toggle('display-none');
-    const changeHeaderBackground = (ico) => {
-        const width = window.innerWidth;
-        if (width > 768) {
-            size = 'desktop';
-            console.log(size);
-            console.log(ico);
-        }
-        else {
-            size = 'mobile';
-            console.log(size);
-            console.log(ico);
-        }
-    };
-    changeHeaderBackground(sunIco);
-    const nightThemeBackground = `url('./img/bg-${size}-dark.jpg')`;
-    const dayThemeBackground = `url('./img/bg-${size}-light.jpg')`;
     if (sunIco.classList.contains('display-none')) {
-        header.style.backgroundImage = dayThemeBackground;
         root.style.setProperty('--backgroundColor', 'hsl(236, 33%, 92%)');
         root.style.setProperty('--taskBoxBackgroundColor', 'hsl(0, 0%, 98%)');
+        header.classList.replace('dark-header', 'light-header');
     }
     else if (moonIco.classList.contains('display-none')) {
-        header.style.backgroundImage = nightThemeBackground;
         root.style.setProperty('--backgroundColor', 'hsl(235, 21%, 11%)');
         root.style.setProperty('--taskBoxBackgroundColor', 'hsl(235, 24%, 19%)');
+        header.classList.replace('light-header', 'dark-header');
     }
 };
 addTaskButton.addEventListener('click', addTask);
