@@ -145,7 +145,6 @@ const changeTheme = () => {
 	moonIco.classList.toggle('display-block');
 	moonIco.classList.toggle('display-none');
 	sunIco.classList.toggle('display-none');
-
 	if (sunIco.classList.contains('display-none')) {
 		root.style.setProperty('--backgroundColor', 'hsl(236, 33%, 92%)');
 		root.style.setProperty('--taskBoxBackgroundColor', 'hsl(0, 0%, 98%)');

@@ -84,8 +84,9 @@ body {
 	align-items: center;
 	width: 100%;
 	height: 3rem;
-	padding: 0 1rem;
+	padding: 0.5rem 1rem;
 	background-color: var(--taskBoxBackgroundColor);
+	transition: transform 0.3s;
 }
 
 .input__box {
@@ -118,8 +119,8 @@ body {
 
 .box__left {
 	border-radius: 50%;
-	width: 2.4rem;
-	height: 2.4rem;
+	width: 2.2rem;
+	height: 2.2rem;
 	vertical-align: middle;
 	border: 1px solid #ddd;
 	appearance: none;
@@ -142,7 +143,7 @@ body {
 	border-bottom: solid 2px var(--backgroundColor);
 	opacity: 0;
 	transform: translateY(-25%);
-	animation: showTaskBox 0.3s 1 forwards;
+	animation: showTaskBox 0.8s 0.2s 1 forwards;
 }
 
 .task__box:last-child,
@@ -221,6 +222,10 @@ body {
 	display: block;
 }
 
+.delete-animation {
+	animation: deleteTaskBox 0.8s 0.1s 1 forwards;
+}
+
 @keyframes showTaskBox {
 	from {
 		opacity: 0;
@@ -229,5 +234,15 @@ body {
 	to {
 		opacity: 1;
 		transform: translateY(0);
+	}
+}
+@keyframes deleteTaskBox {
+	from {
+		opacity: 1;
+		transform: translateY(0);
+	}
+	to {
+		opacity: 0;
+		transform: translateY(25%);
 	}
 }
