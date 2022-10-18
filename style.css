@@ -83,8 +83,8 @@ body {
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
-	height: 3rem;
-	padding: 0.5rem 1rem;
+	min-height: 3rem;
+	padding: 0.2rem 1rem;
 	background-color: var(--taskBoxBackgroundColor);
 	transition: transform 0.3s;
 }
@@ -157,6 +157,7 @@ body {
 
 .task__name {
 	width: 70%;
+	font-size: 1rem;
 	transition: text-decoration 0.3s, color 0.3s;
 	color: var(--lightFontColor);
 }
@@ -225,7 +226,18 @@ body {
 .delete-animation {
 	animation: deleteTaskBox 0.8s 0.1s 1 forwards;
 }
+.attribution {
+	position: absolute;
+	bottom: 2%;
+	left: 50%;
+	transform: translate(-50%);
+	font-size: 11px;
+	text-align: center;
+}
 
+.attribution a {
+	color: hsl(228, 45%, 44%);
+}
 @keyframes showTaskBox {
 	from {
 		opacity: 0;
@@ -244,5 +256,33 @@ body {
 	to {
 		opacity: 0;
 		transform: translateY(25%);
+	}
+}
+@media (min-width: 576px) {
+	.task__name {
+		width: 80%;
+		font-size: 1.2rem;
+	}
+}
+@media (min-width: 768px) {
+	.box {
+		min-height: 4rem;
+	}
+	.input {
+		font-size: 1.6rem;
+	}
+	.input::placeholder {
+		font-size: 1.4rem;
+	}
+	.task__name {
+		width: 80%;
+		font-size: 1.8rem;
+	}
+	.left__info,
+	.clear-completed__btn {
+		font-size: 1.2rem;
+	}
+	.status__btn {
+		font-size: 1.4rem;
 	}
 }
