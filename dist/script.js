@@ -139,5 +139,4 @@ function loadTasks() {
     const taskJSON = localStorage.getItem('tasks');
     if (taskJSON == null)
         return [];
-    return JSON.parse(taskJSON);
 }

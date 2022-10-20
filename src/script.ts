@@ -164,8 +164,8 @@ statusBtns.forEach((statusBtn) => {
 	statusBtn.addEventListener('click', changeStatusDisplayed);
 });
 themeButton.addEventListener('click', changeTheme);
+
 function loadTasks(): Task[] {
 	const taskJSON = localStorage.getItem('tasks');
 	if (taskJSON == null) return [];
-	return JSON.parse(taskJSON);
 }
